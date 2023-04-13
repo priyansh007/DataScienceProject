@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Income predictor</title>
+        <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='assets/favicon.ico')}}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="#page-top">Income predictor</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Exploration</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Machine learning</a></li>
+                        <li class="nav-item"><a class = "nav-link" href="#Conclusion">Conclusion</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+                <h1 class="fw-bolder">Predicting Income of individual person using several factors</h1>
+                <p class="lead">A data science project by AI Camp students</p>
+                <a class="btn btn-lg btn-light" href="#about">See our work below</a>
+            </div>
+        </header>
+        <!-- About section-->
+        <section id="about">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-11">
+                        <h2>What does the project do?
+                        </h2>
+                        <p class="lead">For this project, We have used the dataset available at The dataset available at <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data" target="_blank" rel="noopener noreferrer">UCI lab</a> which is a census data containing information about individuals such as age, education, occupation, work-class, marital status, race, gender, capital-gain, capital-loss, and native country. The data set is used for classification and prediction tasks to determine whether an individual makes over 50K dollars per year or not, based on the given attributes. </p>
+
+                        <p class="lead">The dataset contains a total of 48,842 instances with 14 attributes, where the target attribute is income, which is a binary class variable. There are 6,200 missing values in the data, which are represented by a question mark '?'. This data set is used in this research to evaluate classification algorithms.</p>
+
+                        <p class="lead">We have used this dataset to visualize various features & corelations, for data pre-processing and to train the classification ML models</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services section-->
+        <section class="bg-light" id="services">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-11">
+                    <h1 id="top-level-heading">Exploration</h1><br/>
+                    </div>
+                    <div class="col-lg-11">
+                        <h3>Snapshot of dataset</h3>
+                        <p class="lead">First, lets see how our dataset looks like. First 10 rows are displayed in following screenshot.</p>
+                        <iframe width="1200" height="500" title="Table Snapshot" src="{{url_for('static', filename='Graphs/table.html')}}"></iframe> <br><br>
+                    </div> <br>
+
+                    <div class="col-lg-11">
+                        <h3>Data PreProcessing Steps</h3> <br>
+                        <h4>Categorical Data analysis</h4>
+
+                        <p class="lead"> <strong>1) Nativecountry:</strong> We plotted nativecountry distribution graph using plotly to checkout different categories. Graph is as per following</p>
+                        <iframe width="1200" height="700" title="lineplot of native country" src="{{url_for('static', filename='Graphs/nativecountry.html')}}"></iframe> <br><br>
+                         <p class="lead"> It is visible from graph that all other categories except United states can be merged into single category, we named that category as "Other". Nativecountry categorywise target class distribution is provided below</p>
+                        <div class="d-flex align-items-center justify-content-center"><iframe width="850" height="600" title="After pre-processing" src="{{url_for('static', filename='Graphs/nativecountry_Aprocessing.html')}}"></iframe></div> <br><br>
+
+                        <p class="lead"> <strong>2) Education:</strong> Graphs for various education category is as per below, Second graph shows target class distribution for all categories</p>
+                        <iframe width="1200" height="700" title="lineplot of education" src="{{url_for('static', filename='Graphs/education.html')}}"></iframe> <br>
+                        <div class="d-flex align-items-center justify-content-center"><iframe width="1030" height="650" title="lineplot of education target wise" src="{{url_for('static', filename='Graphs/education_categories.html')}}"></iframe></div>
+
+                        <br>
+                         <p class="lead"> It is visible from graph that some of the categories does not have target value "50K", It means they all have same output thus we can combine them into one column. Those categories are "11th", "9th", "7th-8th", "5th-6th", "10th", "Preschool", "12th" and "1st-4th" so we have combined them into one category "Basic". Such way we have also combined "Doctorate" and "Prof-school" into "Higher" category.</p>
+                        <div class="d-flex align-items-center justify-content-center"><iframe width="1030" height="650" title="After pre-processing" src="{{url_for('static', filename='Graphs/education_Aprocessing.html')}}"></iframe> </div><br><br>
+
+                        <p class="lead"> <strong>3) Marital Status:</strong> Graphs [Bar chart + Pie chart] for various marital category is as per below, Second graph shows target class distribution for all categories</p>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/maritalstatus.html')}}"></iframe> <br>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="1030" height="650" title="lineplot of maritalstatus target wise" src="{{url_for('static', filename='Graphs/maritalstatus_categories.html')}}"></iframe></div>
+
+                        <br>
+                         <p class="lead"> It is visible from graph that some of the categories does not have much target value "50K", It means they all have same output thus we can combine them into one column. Those categories are "Widowed", "Married-spouse-absent", "Married-AF-spouse" and "Separated" so we have combined them into one category "Other".</p>
+                         <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="1030" height="650" title="After pre-processing" src="{{url_for('static', filename='Graphs/maritalstatus_Aprocessing.html')}}"></iframe> </div><br><br>
+
+                        <p class="lead"> <strong>4) Relationship Status:</strong> Graphs [Bar chart + Pie chart] for various relationship category is as per below, Second graph shows target class distribution for all categories</p>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/relationship.html')}}"></iframe> <br>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="1030" height="650" title="lineplot of maritalstatus target wise" src="{{url_for('static', filename='Graphs/relationship_categories.html')}}"></iframe></div>
+
+                        <br>
+                         <p class="lead"> As per previous processing, we have reduce some categories here also and combined "Other-relative" and "Own-child" Categories.</p> <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="1030" height="650" title="After pre-processing" src="{{url_for('static', filename='Graphs/relationship_Aprocessing.html')}}"></iframe></div> <br><br>
+
+                        <p class="lead"> <strong>5) Target label:</strong> Field indicating income is greater than 50K is not denoted as label, distribution of that field is shown in following graph, it is visible from graph that class values are not balanced so we need to take care of class weight while training the ML models</p>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/label.html')}}"></iframe> <br>
+
+                        <p class="lead"> <strong>6) All Categorical columns:</strong> In this section lets visualize all other columns</p>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/workclass.html')}}"></iframe> <br>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/occupation.html')}}"></iframe> <br>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/race.html')}}"></iframe> <br>
+                        <iframe width="1200" height="700" title="lineplot of maritalstatus" src="{{url_for('static', filename='Graphs/sex.html')}}"></iframe> <br>
+
+
+                    </div><br><br>
+                    <div class="col-lg-11">
+                        <h4>Visualization of Numerical columns</h4>
+                        <p class="lead">We isolated the numerical features that we saw as most important and turned them into their own correlation table, so that we can see how these crucial features affect income labels.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="500" height="500" title="Crucial Features Hetmap" src="{{url_for('static', filename='Graphs/corelation.html')}}"></iframe> </div>
+                        <br>
+                    </div> <br>
+
+                    <div class="col-lg-11">
+                        <h4>Visualization of Relation using Scatter graphs</h4>
+                        <p class="lead">Here we plotted some of the numerical columns to get indepth idea about their corelation.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="1200" height="1600" title="Crucial Features Hetmap" src="{{url_for('static', filename='Graphs/relation.html')}}"></iframe> </div>
+                        <br>
+                    </div>
+
+                    <div class="col-lg-11">
+                        <h4>Outlier detection</h4>
+                        <p class="lead">We used Z score techniques to detect and remove the outlier from numerical data columns. Some visualization is shown below</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="1050" height="750" title="Crucial Features Hetmap" src="{{url_for('static', filename='images/New/outlier_1.jpg')}}"></iframe> </div>
+                        <br>
+                    </div>
+
+                    <div class="col-lg-11">
+                        <h3>Snapshot of dataset - After preprocessing</h3>
+                        <p class="lead">Lets check our final dataset snapshot after all preprocessing steps.</p>
+                        <iframe width="1200" height="450" title="Table Snapshot" src="{{url_for('static', filename='Graphs/table2.html')}}"></iframe>
+                    </div> 
+                </div>
+            </div>
+        </section>
+        <!-- Contact section-->
+        <section id="contact">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-11">
+                        <h1>Machine Learning</h1></br>
+                    </div>
+                    <div class="col-lg-11">
+                        <h2>Decision tree classifier: Explanation</h2>
+                        <p class="lead">Decision Tree Classifier is a popular machine learning algorithm used for classification problems. It works by building a tree-like model of decisions based on the features of the input data, which is then used to predict the class label of new data points. <br>
+
+                        In a decision tree, each internal node represents a feature or attribute, and each branch represents a decision rule or condition based on that feature. The leaves of the tree represent the class labels or outcomes. <br>
+
+                        The algorithm works by recursively splitting the data into subsets based on the value of the features until the subsets are homogeneous or cannot be further split. The splitting process is based on information gain or Gini impurity, which measures the degree of randomness or disorder in the subsets. The feature with the highest information gain or lowest Gini impurity is chosen for splitting.<br>
+
+                        Once the tree is built, it can be used to predict the class label of new data points by traversing the tree based on the values of the features until a leaf node is reached, which gives the predicted class label.<br>
+
+                        Decision Tree Classifier is a powerful and interpretable algorithm that can handle both categorical and numerical data and can capture nonlinear relationships between the features and the class label. However, it can also be prone to overfitting and can create complex trees that are difficult to interpret. Therefore, it is important to tune the hyperparameters of the algorithm to achieve optimal performance.<br>
+                        So here we train classifier using various parameters to find out the optimal parameters, Here we used different depth of trees to identify the optimal depth. Various accuracy on different depth is provided in following graph.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="850" height="650" title="accuracy lines" src="{{url_for('static', filename='Graphs/decisionTreeGraph.html')}}"></iframe> </div>
+                    </div>
+
+                    <div class="col-lg-11">
+                        <h2>Decision tree classifier: Results</h2>
+                        <p class="lead"> Previous graph suggests that classifier with depth 10 performs best for training and testing data. Here we have a confusion matrix with the results of the decision tree classifier (depth=10) applied on our dataset. A confusion matrix for a classification problem tells us the number of correct and incorrect predictions for every class. Our model performed exceptionally well on classes who have <=50K income.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        
+                        <iframe width="630" height="330" title="accuracy lines" src="{{url_for('static', filename='images/New/class_tree_new.png')}}"></iframe> 
+                    <iframe width="530" height="530" title="accuracy lines" src="{{url_for('static', filename='Graphs/decisionTreeCf.html')}}"></iframe>
+                </div>
+
+                        
+                    </div>
+                    <div class="col-lg-11">
+                        <h2>K Nearest Neighbors: Explanation</h2>
+                        <p class="lead">K Nearest Neighbors looks at data points in the testing set and infers the classification based on similarity to other points of the same class in the training set. <br>
+
+                        So here we trained KNN classifier using various parameters to find out the optimal parameters, Here we used different nearest neighbours to identify the optimal neighbours. Various accuracy on different neighbour is provided in following graph.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="850" height="650" title="accuracy lines" src="{{url_for('static', filename='Graphs/KnnGraph.html')}}"></iframe> </div>
+                    </div>
+
+                   <div class="col-lg-11">
+                        <h2>K Nearest Neighbors: Results</h2>
+                        <p class="lead"> Previous graph suggests that classifier with 21 neighbours performs best for training and testing data. Here we have a confusion matrix with the results of the KNN classifier (neighbour=21) applied on our dataset.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        
+                        <iframe width="630" height="330" title="accuracy lines" src="{{url_for('static', filename='images/New/Knn_new.png')}}"></iframe> 
+                    <iframe width="530" height="530" title="accuracy lines" src="{{url_for('static', filename='Graphs/KnnCf.html')}}"></iframe></div></div>
+
+
+                    <div class="col-lg-11">
+                        <h2>Ensemble techniques: Explanation</h2>
+                        <p class="lead">GradientBoostingClassifier is a popular ensemble learning algorithm used for classification tasks. It is a type of boosting algorithm that works by building a sequence of decision trees. Each subsequent tree tries to correct the errors made by the previous tree in the sequence.<br>
+
+                        At each iteration, the algorithm assigns weights to the samples that were misclassified by the previous tree, giving them higher importance in the next iteration. This process continues until the algorithm reaches the specified number of trees or the error rate is minimized to a predefined threshold.<br>
+
+                        In GradientBoostingClassifier, each tree is built on the residuals of the previous tree. The output of each tree is then combined to form the final prediction. The algorithm uses gradient descent to minimize the loss function, which is a measure of the difference between the predicted and actual values.<br>
+
+                        The strength of GradientBoostingClassifier lies in its ability to handle complex datasets with a large number of features. It is also less prone to overfitting compared to other machine learning algorithms. However, it may require more computational resources and longer training times compared to simpler algorithms.<br>
+                    Here to identify optimal number of trees we plotted graph of accuracy for various number of estimators</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="850" height="650" title="accuracy lines" src="{{url_for('static', filename='Graphs/EnsembleGraph.html')}}"></iframe> </div>
+                    </div>
+
+                   <div class="col-lg-11">
+                        <h2>Ensemble techniques: Results</h2>
+                        <p class="lead"> Previous graph suggests that classifier with  151 estimators performs best for training and testing data. Here we have a confusion matrix with the results of the GradientBoosting classifier (estimators=151) applied on our dataset.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        
+                        <iframe width="630" height="330" title="accuracy lines" src="{{url_for('static', filename='images/New/Ensemble_new.png')}}"></iframe> 
+                    <iframe width="530" height="530" title="accuracy lines" src="{{url_for('static', filename='Graphs/EnsembleCf.html')}}"></iframe></div></div>
+
+                    <div class="col-lg-11">
+                        <h2>Neural Network: Explanation</h2>
+                        <p class="lead"> We have implemented a neural network using TensorFlow and Keras to perform binary classification on a given dataset. The neural network has several hidden layers with different numbers of neurons and activation functions. We have used the 'relu' activation function for all layers except the last one, which has the 'sigmoid' activation function. We have compiled the model with 'adagrad' optimizer and binary cross-entropy loss function, and evaluated it using accuracy as a metric. We have also used the class weight parameter to handle class imbalance in the dataset.<br>
+Neural networks, they are machine learning models that are designed to learn complex patterns and relationships between inputs and outputs. Neural networks consist of interconnected nodes or neurons that are organized into layers, with each layer performing specific computations on the input data. During training, the network adjusts its weights to minimize the difference between the predicted outputs and the actual outputs. Neural networks can be used for various tasks such as classification, regression, and image recognition, among others. It is important to choose the right architecture, activation functions, and optimization algorithms for a given problem to achieve good performance.<br>
+                    In following graph we have displayed performance of neural network on 500 epochs with training and validation accuracy</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        <iframe width="850" height="650" title="accuracy lines" src="{{url_for('static', filename='Graphs/NeuralNetworkGraph.html')}}"></iframe> </div>
+                    </div>
+
+                   <div class="col-lg-11">
+                        <h2>Neural Network: Results</h2>
+                        <p class="lead"> In following graph we displayed the confusion matric for Neural Network when we tested this on our test dataset.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                        
+                        <iframe width="630" height="330" title="accuracy lines" src="{{url_for('static', filename='images/New/NeuralNet_new.png')}}"></iframe> 
+                    <iframe width="530" height="530" title="accuracy lines" src="{{url_for('static', filename='Graphs/NeuralNetworkCf.html')}}"></iframe></div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+        <section class="bg-light" id="Conclusion">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-11">
+                    <h1 id="top-level-heading">Conclusion</h1><br/>
+                    </div>
+                    <div class="col-lg-11">
+
+                        <p class="lead">In conclusion, From following graphs we can say that GradientBoosting algorithm works best while classifying True positives and True Negatives correctly because it has higher accuracy. But Decision tree works better for classifyng minor income category ">50K". </p>
+
+                        <div class="d-flex align-items-center justify-content-center">
+                        
+                        <iframe width="1030" height="530" title="accuracy lines" src="{{url_for('static', filename='Graphs/Conclusion.html')}}"></iframe> </div>
+
+                        <h3>So what?</h3>
+                            
+                        <p class="lead">So what is the significance of our project? Because we know which features are most correlated with a higher GDP country, we can identify both the factors that lead to countries with higher monetary value and also predict and then invest in countries with a high likelihood of future growth. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-left: 80px; margin-right: 80px;" id="team">
+        <header class="bg-primary text-center py-5 mb-4">
+            <div class="container px-4">
+              <h1 class="fw-light text-white">Meet the Extraordinary AI Camp Team</h1>
+            </div>
+          </header>
+          
+          <!-- Page Content -->
+          <div class="container px-4 ">
+            <div class="row justify-content-center">
+              <!-- Team Member 1 -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-0 shadow">
+                  <img src="{{url_for('static', filename='images/New/priyansh.jpg')}}" class="card-img-top" alt="...">
+                  <div class="card-body text-center">
+                    <h5 class="card-title mb-0">Priyansh Zalavadiya</h5>
+                    <div class="card-text text-black-50">Instructor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.row -->
+          
+          </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; AI Camp 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/static/js/scripts.js"></script>
+    </body>
+</html>
